@@ -17,6 +17,11 @@ export default class extends Component {
 ```
 
 Sometimes the 3rd party creates objects in the _window_ object. We can mimic the scenario in the _TestClass, which class creates the _Leak_ class in the _window_ object.
+
+You can see the __leak_ object in the Chrome Developer Tools.
+
+![](0.png)
+
 ```javascript
 
 class Leak { }
@@ -34,7 +39,7 @@ export default class TestClass {
 }
 ```
 
-When switch from the _Home_ page to the _About_ page, the _leak_ object stays in the _window_ object.
+When switch from the _Home_ page to the _About_ page, the __leak_ object stays in the _window_ object.
 
 ![](5.png)
 
@@ -57,7 +62,7 @@ If the 3rd party class provides a function to clean up the resource it uses, we 
   }
 ```
 
-By calling the _destroy_ function in the _MutationObserver_, the _leak_ object is removed from the _window_ object.
+By calling the _destroy_ function in the _MutationObserver_, the __leak_ object is removed from the _window_ object.
 
 ![](4.png)
 
