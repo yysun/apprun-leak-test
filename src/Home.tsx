@@ -1,5 +1,6 @@
 import app, { Component } from 'apprun';
 import Test from './TestClass'
+import destroy from './destroy';
 
 export default class HomeComponent extends Component {
   state = 'Home';
@@ -18,15 +19,16 @@ export default class HomeComponent extends Component {
   rendered = () => {
     const input = document.querySelector('input')
     const test = new Test(input);
-    const observer = new MutationObserver(changes => {
-      changes[0].removedNodes.forEach(node => {
-        if (node === input) {
-          test.destroy();
-          observer.disconnect();
-        }
-      })
-    });
-    observer.observe(input.parentNode, { childList: true });
+    destroy(input, test.destroy);
+    // const observer = new MutationObserver(changes => {
+    //   changes[0].removedNodes.forEach(node => {
+    //     if (node === input) {
+    //       test.destroy();
+    //       observer.disconnect();
+    //     }
+    //   })
+    // });
+    // observer.observe(input.parentNode, { childList: true });
 
   }
 }
