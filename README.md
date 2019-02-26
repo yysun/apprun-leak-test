@@ -54,9 +54,9 @@ If the 3rd party class provides a function to clean up the resource it uses, we 
       changes[0].removedNodes.forEach(node => {
         if (node === input) {
           test.destroy();
+          observer.disconnect();
         }
-        observer.disconnect();
-      })
+      });
     });
     observer.observe(input.parentNode, { childList: true });
   }

@@ -22,8 +22,8 @@ export default class HomeComponent extends Component {
       changes[0].removedNodes.forEach(node => {
         if (node === input) {
           test.destroy();
+          observer.disconnect();
         }
-        observer.disconnect();
       })
     });
     observer.observe(input.parentNode, { childList: true });
