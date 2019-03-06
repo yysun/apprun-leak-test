@@ -15,5 +15,6 @@ export default class TestClass {
   destroy() {
     this._leak = null;
     window['_leak'] = null;
+    console.log('TestClass.destroy');
   }
 }

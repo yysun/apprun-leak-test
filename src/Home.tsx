@@ -2,6 +2,8 @@ import app, { Component } from 'apprun';
 import Test from './TestClass'
 
 export default class HomeComponent extends Component {
+  test: Test;
+
   state = 'Home';
 
   view = (state) => {
@@ -17,17 +19,12 @@ export default class HomeComponent extends Component {
 
   rendered = () => {
     const input = document.querySelector('input')
-    const test = new Test(input);
-    const observer = new MutationObserver(changes => {
-      changes[0].removedNodes.forEach(node => {
-        if (node === input) {
-          test.destroy();
-          observer.disconnect();
-        }
-      })
-    });
-    observer.observe(input.parentNode, { childList: true });
+    this.test = new Test(input);
+  }
 
+  unload = () => {
+    this.test.destroy();
+    this.test = null;
   }
 }
 
